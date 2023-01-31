@@ -6,7 +6,3 @@ provider "aws" {
 module "cmk" {
     source = "./modules/kms"
 }
-
-output "test" {
-  value = module.cmk.test
-}

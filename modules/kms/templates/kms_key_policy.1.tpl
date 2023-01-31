@@ -11,13 +11,12 @@
           "Action" : "kms:*",
           "Resource" : "*"
         },
+        %{ if length(TRUSTING_PRINCIPALS) > 0 ~}
         {
             "Sid": "Allow Cross Account Access to Production Accounts",
             "Effect": "Allow",
             "Principal": {
-                "AWS": [
-                    "785548451685"
-                ]
+                "AWS": ${TRUSTING_PRINCIPALS}
              },
             "Action": [
                 "kms:Encrypt",
@@ -32,9 +31,7 @@
             "Sid": "Allow Cross Account Access to Production Accounts for attachment of persistent resources",
             "Effect": "Allow",
             "Principal": {
-                "AWS": [
-                    "785548451685"
-                ]
+                "AWS": ${TRUSTING_PRINCIPALS}
              },
             "Action": [
                 "kms:CreateGrant",
@@ -43,6 +40,7 @@
             ],
             "Resource": "*"
         },
+        %{endif ~}
         {
             "Sid": "Allow use of the key for Veeam Account Role",
             "Effect": "Allow",
