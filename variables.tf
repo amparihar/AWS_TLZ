@@ -5,3 +5,7 @@ variable "aws_region"{
 variable "aws_regions" {
     type = map(string)
 }
+
+variable "multi_region" {
+    type = bool
+}
